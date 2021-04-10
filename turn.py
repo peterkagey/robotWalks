@@ -24,12 +24,13 @@ class Right(Turn):
     c_y = y + r*self.sin_d(self.phi - 90)
     return (c_x, c_y)
 
-  def draw(self, drawing_context):
-    r = 1.1*self.scale
-    line_width = self.scale//5
+  def draw(self, drawing_context, lower_corner, line_thickness, color):
+    (x,y) = lower_corner
+    r = (1 + line_thickness/2) * self.scale
+    line_width = math.ceil(line_thickness * self.scale)
     (c_x, c_y) = self.center
-    bounding_rectangle = [(c_x - r, c_y - r),(c_x + r, c_y + r)]
-    drawing_context.arc(bounding_rectangle, self.phi + 89 - self.theta, self.phi + 91, width=line_width)
+    bounding_rectangle = [(c_x - x - r, c_y - y - r),(c_x - x + r, c_y - y + r)]
+    drawing_context.arc(bounding_rectangle, self.phi + 89 - self.theta, self.phi + 91, width=line_width, fill=color)
 
   def new_point(self):
     r = self.scale
@@ -51,12 +52,13 @@ class Left(Turn):
     c_y = y + r*self.sin_d(self.phi + 90)
     return (c_x, c_y)
 
-  def draw(self, drawing_context):
-    r = 1.1*self.scale
-    line_width = self.scale//5
+  def draw(self, drawing_context, lower_corner, line_thickness, color):
+    (x,y) = lower_corner
+    r = (1 + line_thickness/2) * self.scale
+    line_width = math.ceil(line_thickness * self.scale)
     (c_x, c_y) = self.center
-    bounding_rectangle = [(c_x - r, c_y - r),(c_x + r, c_y + r)]
-    drawing_context.arc(bounding_rectangle, self.phi - 91, self.phi - 89 + self.theta, width=line_width)
+    bounding_rectangle = [(c_x - x - r, c_y - y - r),(c_x - x + r, c_y - y + r)]
+    drawing_context.arc(bounding_rectangle, self.phi - 91, self.phi - 89 + self.theta, width=line_width, fill=color)
 
   def new_point(self):
     r = self.scale
