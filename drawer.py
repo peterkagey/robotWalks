@@ -82,8 +82,8 @@ class CircleSpiralDrawer:
     lower_corner = (x_min - 2*self.scale - (walk_height - walk_width/2), y_min - 2*self.scale)
     self.trace_walks(lower_corner, image_size)
     del self.ctx
-    if walk_height > 1024:
+    if walk_height > 2048:
       print("height is ", walk_height)
-      img = img.resize((2048,1024))
+      img = img.resize((4096,2048), resample=Image.LANCZOS).quantize()
     file_name = "/tmp/robot_walk.png"
     img.save(file_name)

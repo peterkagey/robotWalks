@@ -33,9 +33,6 @@ def handler(event, context):
 
   drawer.draw_image()
   file_with_path = "/tmp/robot_walk.png"
-  tweet_copy = "Step size: 1/" + str(step_size) + ".\nStep pattern: " + pattern_word(step_pattern)
-  # api.update_with_media(filename=file_with_path, status=tweet_copy)
+  tweet_copy = "Step size: 1/" + str(step_size) + ".\nStep pattern: " + pattern_word(step_pattern) + "."
+  api.update_with_media(filename=file_with_path, status=tweet_copy)
   return "Posted Tweet with message: '" + tweet_copy + "'"
-
-# print(handler({"step_size": 9, "step_pattern": 0b1101001111000010001100100011},2))
-print(handler({},2))
