@@ -2,7 +2,6 @@ from PIL import Image, ImageDraw
 from turn import Left, Right
 import random
 import math
-import os
 
 class CircleSpiralDrawer:
   def __init__(self, step_size=None, step_pattern=None):
